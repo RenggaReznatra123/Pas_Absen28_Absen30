@@ -13,8 +13,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder>{
-    private List<JadwalModel> jadwalList;
+public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder> {
+
+    private final List<JadwalModel> jadwalList;
 
     public JadwalAdapter(List<JadwalModel> jadwalList) {
         this.jadwalList = jadwalList;
@@ -32,13 +33,21 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         JadwalModel jadwal = jadwalList.get(position);
 
-        holder.tvJadwalPertandingan.setText(jadwal.getDateEventLocal() + " • " + jadwal.getStrTimeLocal());
+        // Format tanggal dan waktu menggunakan string resource
+        String formatted = holder.itemView.getContext().getString(
+                R.string.jadwal_format,
+                jadwal.getDateEventLocal(),
+                jadwal.getStrTimeLocal()
+        );
+        holder.tvJadwalPertandingan.setText(formatted);
+
+        // Set nama tim dan skor
         holder.tvHomeTeam.setText(jadwal.getStrHomeTeam());
         holder.tvAwayTeam.setText(jadwal.getStrAwayTeam());
-        holder.tvHomeScore.setText(jadwal.getIntHomeScore());
-        holder.tvAwayScore.setText(jadwal.getIntAwayScore());
+        holder.tvHomeScore.setText(String.valueOf(jadwal.getIntHomeScore()));
+        holder.tvAwayScore.setText(String.valueOf(jadwal.getIntAwayScore()));
 
-        // Load logo tim
+        // Load logo tim pakai Glide
         Glide.with(holder.itemView.getContext())
                 .load(jadwal.getStrHomeTeamBadge())
                 .into(holder.ivHomeTeam);
