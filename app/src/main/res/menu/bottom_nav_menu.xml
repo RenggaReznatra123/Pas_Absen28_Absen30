@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_Premier"
+        android:icon="@drawable/premierleaguelogo2"
+        android:title="Premier League" />
+
+    <item
+        android:id="@+id/nav_Jadwal"
+        android:icon="@drawable/jadwal"
+        android:title="Jadwal" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/laligalogo"
+        android:title="Profile" />
+
+</menu>
