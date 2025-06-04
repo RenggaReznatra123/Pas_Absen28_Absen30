@@ -33,7 +33,7 @@ public class JadwalFragment extends Fragment{
     }
 
     private void fetchJadwal(APIservise api) {
-        api.getJadwalLaliga("Jadwal").enqueue(new Callback<JadwalResponse>() {
+        api.getJadwalLaliga().enqueue(new Callback<JadwalResponse>() {
             @Override
             public void onResponse(Call<JadwalResponse> call, Response<JadwalResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -43,6 +43,11 @@ public class JadwalFragment extends Fragment{
                     rvJadwal.setVisibility(View.VISIBLE);
                     pbLoading1.setVisibility(View.GONE);
                 }
+                else {
+                    Log.e("API_ERROR", "Response gagal atau kosong");
+                    pbLoading1.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
