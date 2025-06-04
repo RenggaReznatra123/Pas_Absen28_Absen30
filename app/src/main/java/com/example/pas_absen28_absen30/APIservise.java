@@ -8,6 +8,7 @@ public interface APIservise {
     Call<TeamResponse> getEnglishPremierleague(@Query("l") String league);
 
     @GET("/api/v1/json/3/eventsround.php?id=4335&r=36&s=2024-2025")
-    Call<JadwalResponse> getJadwalLaliga(@Query("j") String jadwal1);
+    Call<JadwalResponse> getJadwalLaliga();
+
 
 }
